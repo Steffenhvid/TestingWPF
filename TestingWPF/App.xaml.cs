@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using TestingWPF.ViewModels;
 
 namespace TestingWPF
 {
@@ -15,6 +16,7 @@ namespace TestingWPF
     public partial class App : Application
     {
         public IServiceProvider Services { get; }
+        public new static App Current => (App)Application.Current;
         public App()
         {
             Services = CongifureServices();
@@ -25,6 +27,7 @@ namespace TestingWPF
             var services = new ServiceCollection();
 
             //Add services here
+            services.AddTransient<MainViewModel>();
 
             return services.BuildServiceProvider();
         }
