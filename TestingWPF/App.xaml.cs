@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,19 @@ namespace TestingWPF
     /// </summary>
     public partial class App : Application
     {
+        public IServiceProvider Services { get; }
+        public App()
+        {
+            Services = CongifureServices();
+        }
+
+        public static IServiceProvider CongifureServices()
+        {
+            var services = new ServiceCollection();
+
+            //Add services here
+
+            return services.BuildServiceProvider();
+        }
     }
 }
